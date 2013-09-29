@@ -77,7 +77,7 @@ mode        : selfcontained # {standalone, draft}
 
 --- .class #id 
 
-行列の取り出しと計算
+値の取り出しと計算
 ```
 > a[1,]
 [1]  1  4  7 10
@@ -122,7 +122,7 @@ mode        : selfcontained # {standalone, draft}
 --- .class #id 
 
 アヤメのガクヘン(蕚片)と花びらに関するデータでRのサンプルデータとして有名  
-(詳細は最後の参考リンクを参照)
+なiris(詳細は最後の参考リンクを参照)
 
 ```
 > iris
@@ -224,7 +224,7 @@ Multiple R-squared:  0.9271,	Adjusted R-squared:  0.9266
 F-statistic:  1882 on 1 and 148 DF,  p-value: < 2.2e-16
 ```
 
-Estimateのところが係数。この例では Petal.Widthをy, Petal.Lengthをxとして回帰式は  
+Estimateのところが係数など。この例では Petal.Widthをy, Petal.Lengthをxとして回帰式は  
 y = 0.415755x - 0.363076 
 となります。
 (詳細は最後の参考リンクを参照)
