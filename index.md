@@ -263,9 +263,6 @@ http://monge.tec.fukuoka-u.ac.jp/r_analysis/analysis_iris00.html
 Rで線形単回帰分析  
 http://d.hatena.ne.jp/matsuou1/20110418/1303144024  
 
-可視化周辺の進化がヤヴァイ  
-http://www.slideshare.net/teramonagi/tokyo-r31-20130601
-
 
 --- .class #id 
 おまけ
@@ -300,19 +297,16 @@ sudo でRを起動
 
 --- .class #id 
 おまけ2
-### slidify
+## Slidify
 このプレゼン資料はこれで作ってます。  
 
 インストール
 ```
-q()
-
 sudo でRを起動
 % sudo r
 
 > options(repos="http://cran.r-project.org/")
-> options(repos="http://cran.r-project.org/")
-> install.packages("devtools")
+> install.packages("devtools")   <- ※rChartsでインストール済みの場合は不要
 > library(devtools)
 > install_github('slidify','ramnathv')
 > install_github('slidifyLibraries','ramnathv')
@@ -330,13 +324,13 @@ sudo でRを起動
 > library(slidifyLibraries)
 > author("slidify_test")
 ```
-※ slidify_testというディレクトリができてる
-
-作業ディレクトリでRを起動
+エディタが起動するので適当に編集して保存して
 ```
 > slidify("index.Rmd")
 ```
 これでindex.htmlができるのでブラウザでアクセスする。
+
+--- .class #id 
 
 編集は別ターミナルでindex.Rmdをエディタで編集し、
 Rを起動しているターミナルで
@@ -344,49 +338,24 @@ Rを起動しているターミナルで
 > slidify("index.Rmd")
 ```
 を実行する。  
-(もっとスマートなやり方がある気がする)
-
-
---- .class #id 
-
-単回帰分析
-アイスティーとその日の最高気温について
-
-サンプルデータ
-https://dl.dropboxusercontent.com/u/37468049/data01.txt
-
-これをRを起動しているディレクトリに保存
-
-データの読み込み
-```
-> x <- read.table("data01.txt", header=T)
-> x
-   date temperture icetea
-1  8/22         29     77
-2  8/23         28     62
-3  8/24         34     93
-4  8/25         31     84
-5  8/26         25     59
-...
-```
+(もっとスマートなやり方がありそう)
 
 --- .class #id 
 
-
-図形描画
-```
-> plot(iris[,1],iris[,3])
-> plot(iris)
-> pairs(iris[1:4], pch=21, bg=c("red", "green3","blue"))
-> plot(iris$Petal.Length ~ iris$Sepal.Length)
-```
-
---- .class #id
+おまけも終わりですm(_ _)m  
 
 
-```r
-hist(iris[, 3])
-```
+### 参考
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+rCharts  
+http://rcharts.io  
+
+Slidify  
+http://slidify.org  
+
+R上でスライド作成  
+http://qh73xe.jimdo.com/プロット/パッケージslidify/  
+
+可視化周辺の進化がヤヴァイ  
+http://www.slideshare.net/teramonagi/tokyo-r31-20130601  
 

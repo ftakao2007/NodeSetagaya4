@@ -374,9 +374,6 @@ abline(iris.lm)
 <p>Rで線形単回帰分析<br>
 <a href="http://d.hatena.ne.jp/matsuou1/20110418/1303144024">http://d.hatena.ne.jp/matsuou1/20110418/1303144024</a>  </p>
 
-<p>可視化周辺の進化がヤヴァイ<br>
-<a href="http://www.slideshare.net/teramonagi/tokyo-r31-20130601">http://www.slideshare.net/teramonagi/tokyo-r31-20130601</a></p>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -436,20 +433,17 @@ abline(iris.lm)
   <article>
     <p>おまけ2</p>
 
-<h3>slidify</h3>
+<h2>Slidify</h2>
 
 <p>このプレゼン資料はこれで作ってます。  </p>
 
 <p>インストール</p>
 
-<pre><code>q()
-
-sudo でRを起動
+<pre><code>sudo でRを起動
 % sudo r
 
 &gt; options(repos=&quot;http://cran.r-project.org/&quot;)
-&gt; options(repos=&quot;http://cran.r-project.org/&quot;)
-&gt; install.packages(&quot;devtools&quot;)
+&gt; install.packages(&quot;devtools&quot;)   &lt;- ※rChartsでインストール済みの場合は不要
 &gt; library(devtools)
 &gt; install_github(&#39;slidify&#39;,&#39;ramnathv&#39;)
 &gt; install_github(&#39;slidifyLibraries&#39;,&#39;ramnathv&#39;)
@@ -475,23 +469,30 @@ sudo でRを起動
 &gt; author(&quot;slidify_test&quot;)
 </code></pre>
 
-<p>※ slidify_testというディレクトリができてる</p>
-
-<p>作業ディレクトリでRを起動</p>
+<p>エディタが起動するので適当に編集して保存して</p>
 
 <pre><code>&gt; slidify(&quot;index.Rmd&quot;)
 </code></pre>
 
 <p>これでindex.htmlができるのでブラウザでアクセスする。</p>
 
-<p>編集は別ターミナルでindex.Rmdをエディタで編集し、
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>編集は別ターミナルでindex.Rmdをエディタで編集し、
 Rを起動しているターミナルで</p>
 
 <pre><code>&gt; slidify(&quot;index.Rmd&quot;)
 </code></pre>
 
 <p>を実行する。<br>
-(もっとスマートなやり方がある気がする)</p>
+(もっとスマートなやり方がありそう)</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -502,57 +503,21 @@ Rを起動しているターミナルで</p>
     
   </hgroup>
   <article>
-    <p>単回帰分析
-アイスティーとその日の最高気温について</p>
+    <p>おまけも終わりですm(_ _)m  </p>
 
-<p>サンプルデータ
-<a href="https://dl.dropboxusercontent.com/u/37468049/data01.txt">https://dl.dropboxusercontent.com/u/37468049/data01.txt</a></p>
+<h3>参考</h3>
 
-<p>これをRを起動しているディレクトリに保存</p>
+<p>rCharts<br>
+<a href="http://rcharts.io">http://rcharts.io</a>  </p>
 
-<p>データの読み込み</p>
+<p>Slidify<br>
+<a href="http://slidify.org">http://slidify.org</a>  </p>
 
-<pre><code>&gt; x &lt;- read.table(&quot;data01.txt&quot;, header=T)
-&gt; x
-   date temperture icetea
-1  8/22         29     77
-2  8/23         28     62
-3  8/24         34     93
-4  8/25         31     84
-5  8/26         25     59
-...
-</code></pre>
+<p>R上でスライド作成<br>
+<a href="http://qh73xe.jimdo.com/%E3%83%97%E3%83%AD%E3%83%83%E3%83%88/%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8slidify/">http://qh73xe.jimdo.com/プロット/パッケージslidify/</a>  </p>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="class" id="id" style="background:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <p>図形描画</p>
-
-<pre><code>&gt; plot(iris[,1],iris[,3])
-&gt; plot(iris)
-&gt; pairs(iris[1:4], pch=21, bg=c(&quot;red&quot;, &quot;green3&quot;,&quot;blue&quot;))
-&gt; plot(iris$Petal.Length ~ iris$Sepal.Length)
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="class" id="id" style="background:;">
-  <hgroup>
-    
-  </hgroup>
-  <article>
-    <pre><code class="r">hist(iris[, 3])
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3"> </p>
+<p>可視化周辺の進化がヤヴァイ<br>
+<a href="http://www.slideshare.net/teramonagi/tokyo-r31-20130601">http://www.slideshare.net/teramonagi/tokyo-r31-20130601</a>  </p>
 
   </article>
   <!-- Presenter Notes -->

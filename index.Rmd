@@ -289,7 +289,7 @@ sudo でRを起動
 
 --- .class #id 
 おまけ2
-### slidify
+## Slidify
 このプレゼン資料はこれで作ってます。  
 
 インストール
@@ -298,7 +298,7 @@ sudo でRを起動
 % sudo r
 
 > options(repos="http://cran.r-project.org/")
-> install.packages("devtools")
+> install.packages("devtools")   <- ※rChartsでインストール済みの場合は不要
 > library(devtools)
 > install_github('slidify','ramnathv')
 > install_github('slidifyLibraries','ramnathv')
@@ -316,15 +316,13 @@ sudo でRを起動
 > library(slidifyLibraries)
 > author("slidify_test")
 ```
-※ slidify_testというディレクトリができてる
-
---- .class #id 
-
-作業ディレクトリでRを起動
+エディタが起動するので適当に編集して保存して
 ```
 > slidify("index.Rmd")
 ```
 これでindex.htmlができるのでブラウザでアクセスする。
+
+--- .class #id 
 
 編集は別ターミナルでindex.Rmdをエディタで編集し、
 Rを起動しているターミナルで
@@ -341,5 +339,15 @@ Rを起動しているターミナルで
 
 ### 参考
 
+rCharts  
+http://rcharts.io  
+
+Slidify  
+http://slidify.org  
+
+R上でスライド作成  
+http://qh73xe.jimdo.com/プロット/パッケージslidify/  
+
 可視化周辺の進化がヤヴァイ  
-http://www.slideshare.net/teramonagi/tokyo-r31-20130601
+http://www.slideshare.net/teramonagi/tokyo-r31-20130601  
+
