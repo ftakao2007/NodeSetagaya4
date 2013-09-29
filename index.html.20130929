@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node Setagaya 4</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Node Setagaya 4">
+  <meta name="author" content="ftakao2007">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+    <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide class="title-slide segue nobackground">
+      <hgroup class="auto-fadein">
+        <h1>Node Setagaya 4</h1>
+        <h2>Rを使った簡単な統計処理と可視化</h2>
+        <p>ftakao2007<br/></p>
+      </hgroup>
+          </slide>
+
+    <!-- SLIDES -->
+      <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Rとは</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>オープンソース・フリーソフトウェアの統計解析向けのプログラミング言語</li>
+<li>最小限の労力で見通しよく解析するために工夫された命令体系</li>
+<li>視覚化に優れたグラフ機能、多くの画像フォーマット・商業印刷品質で出力可能</li>
+<li>Excelやcvsデータの読み込み可能</li>
+<li>大規模遺伝子発現プロファイルなどを解析するような学術利用実績あり</li>
+</ul>
+
+<p>(WikiPediaより)  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>とりあえず使ってみる</h2>
+  </hgroup>
+  <article>
+    <h3>値の代入</h3>
+
+<pre><code>&gt; a &lt;- 5
+&gt; d &lt;- &quot;abc&quot;
+
+&gt; a
+[1] 5
+
+&gt; d
+[1] &quot;abc&quot;
+</code></pre>
+
+<p>※ 代入には「=」も使えるが、Rは慣例的に「&lt;-」を使う。</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>ベクトル</h3>
+  </hgroup>
+  <article>
+    <p>「c」を使う</p>
+
+<pre><code>&gt; a &lt;- c(1,2,3)
+&gt; a
+[1] 1 2 3
+&gt; b &lt;- c(4,5,6)
+&gt; a+b
+[1] 5 7 9
+</code></pre>
+
+<p>※ 「c」は適当な変数としては使わない</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>行列</h3>
+  </hgroup>
+  <article>
+    <p>「matrix」を使う<br>
+3行4列の行列に1から12までの数値が入っている例</p>
+
+<pre><code>&gt; matrix(1:12,3,4)
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8   11
+[3,]    3    6    9   12
+
+&gt; a &lt;- matrix(1:12,3,4)
+&gt; a
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8   11
+[3,]    3    6    9   12
+
+</code></pre>
+
+<p>[(行),(列)]です</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>行列の取り出しと計算</p>
+
+<pre><code>&gt; a[1,]
+[1]  1  4  7 10
+
+&gt; a[,1]
+[1] 1 2 3
+
+&gt; a[1,1]
+[1] 1
+
+&gt; a[1,1] * a[1,2]
+[1] 4
+
+&gt; a[3,1] * a[1,2]
+[1] 12
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>任意の行列を作るときはrbind,cbindを使う</p>
+
+<pre><code>&gt; x &lt;- rbind(c(1,3,6,9),
++ c(5,10,7,2))
+&gt; x
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    6    9
+[2,]    5   10    7    2
+
+&gt; x &lt;- cbind(c(1,3,6,9),
++ c(5,10,7,2))
+&gt; x
+     [,1] [,2]
+[1,]    1    5
+[2,]    3   10
+[3,]    6    7
+[4,]    9    2
+</code></pre>
+
+<p>「+」はプロンプトです。この程度であれば1行にすべて書いても問題ないですね。</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>アヤメのガクヘン(蕚片)と花びらに関するデータでRのサンプルデータとして有名<br>
+(詳細は最後の参考リンクを参照)</p>
+
+<pre><code>&gt; iris
+    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1            5.1         3.5          1.4         0.2     setosa
+2            4.9         3.0          1.4         0.2     setosa
+...
+
+&gt; summary(iris)
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width  
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100 
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300 
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300 
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199 
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800 
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500 
+       Species 
+ setosa    :50 
+ versicolor:50 
+ virginica :50 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <pre><code>&gt; sum(iris[,1])  合計
+[1] 876.5
+
+&gt; mean(iris[,1])　平均
+[1] 5.843333
+
+&gt; sd(iris[,1])　　標準偏差
+[1] 0.8280661
+
+&gt; max(iris[,1])　最大
+[1] 7.9
+
+&gt; min(iris[,1])　最小
+[1] 4.3
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>相関</p>
+
+<pre><code>&gt; cor(iris[,1:4])
+             Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
+Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
+Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
+Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000 
+
+&gt; cor(iris＄Petal.Length, iris＄Petal.Width)
+[1] 0.9628654
+</code></pre>
+
+<p>0に近いほど相関が無い。同じもの同士の相関は1になる。<br>
+Petal.LengthとPetal.Widthは正の相関がある。</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>グラフ化</p>
+
+<pre><code class="r">plot(iris$Petal.Length, iris$Petal.Width)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+<pre><code>plot(iris[,3:4]) と同じ
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>lm関数を使った回帰分析</p>
+
+<pre><code>&gt; iris.lm &lt;- lm( Petal.Width ~ Petal.Length, data=iris[,3:4] ) 
+&gt; summary(iris.lm)
+
+Call:
+lm(formula = Petal.Width ~ Petal.Length, data = iris[, 3:4])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.56515 -0.12358 -0.01898  0.13288  0.64272
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <pre><code>Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -0.363076   0.039762  -9.131  4.7e-16 ***
+Petal.Length  0.415755   0.009582  43.387  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2065 on 148 degrees of freedom
+Multiple R-squared:  0.9271,    Adjusted R-squared:  0.9266 
+F-statistic:  1882 on 1 and 148 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+
+<p>Estimateのところが係数。この例では Petal.Widthをy, Petal.Lengthをxとして回帰式は<br>
+y = 0.415755x - 0.363076 
+となります。
+(詳細は最後の参考リンクを参照)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>図示</p>
+
+<pre><code class="r">iris.lm &lt;- lm(Petal.Width ~ Petal.Length, data = iris[, 3:4])
+plot(Petal.Width ~ Petal.Length, data = iris[, 3:4])
+abline(iris.lm)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>終わりですm(_ _)m  </p>
+
+<h3>参考</h3>
+
+<p>seekR (Rに関する検索がやりやすい)<br>
+<a href="http://seekr.jp">http://seekr.jp</a></p>
+
+<p>irisについて<br>
+<a href="http://monge.tec.fukuoka-u.ac.jp/r_analysis/analysis_iris00.html">http://monge.tec.fukuoka-u.ac.jp/r_analysis/analysis_iris00.html</a>  </p>
+
+<p>Rで線形単回帰分析<br>
+<a href="http://d.hatena.ne.jp/matsuou1/20110418/1303144024">http://d.hatena.ne.jp/matsuou1/20110418/1303144024</a>  </p>
+
+<p>可視化周辺の進化がヤヴァイ<br>
+<a href="http://www.slideshare.net/teramonagi/tokyo-r31-20130601">http://www.slideshare.net/teramonagi/tokyo-r31-20130601</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>おまけ</p>
+
+<h2>rCharts</h2>
+
+<p>グリグリ動く図が書ける。</p>
+
+<p>インストール</p>
+
+<pre><code>sudo でRを起動
+% sudo r
+
+&gt; options(repos=&quot;http://cran.r-project.org/&quot;)
+→ミラーサイトだと失敗することがあるのでとりあえず本家を設定
+
+&gt; install.packages(&quot;devtools&quot;)
+&gt; library(devtools)
+&gt; install_github(&#39;rCharts&#39;, &#39;ramnathv&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>使ってみる</p>
+
+<pre><code>※一旦Rを出て一般ユーザで実行
+&gt; q()
+% r
+
+&gt; library(rCharts)
+&gt; x&lt;-subset(as.data.frame(HairEyeColor),Sex==&quot;Male&quot;)
+&gt; nPlot(Freq~Hair,group=&quot;Eye&quot;,data=x,type=&#39;multiBarChart&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>おまけ2</p>
+
+<h3>slidify</h3>
+
+<p>このプレゼン資料はこれで作ってます。  </p>
+
+<p>インストール</p>
+
+<pre><code>q()
+
+sudo でRを起動
+% sudo r
+
+&gt; options(repos=&quot;http://cran.r-project.org/&quot;)
+&gt; options(repos=&quot;http://cran.r-project.org/&quot;)
+&gt; install.packages(&quot;devtools&quot;)
+&gt; library(devtools)
+&gt; install_github(&#39;slidify&#39;,&#39;ramnathv&#39;)
+&gt; install_github(&#39;slidifyLibraries&#39;,&#39;ramnathv&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>使い方  </p>
+
+<pre><code>※一旦Rを出て一般ユーザで実行
+&gt; q()
+% r
+
+&gt; library(slidify)
+&gt; library(slidifyLibraries)
+&gt; author(&quot;slidify_test&quot;)
+</code></pre>
+
+<p>※ slidify_testというディレクトリができてる</p>
+
+<p>作業ディレクトリでRを起動</p>
+
+<pre><code>&gt; slidify(&quot;index.Rmd&quot;)
+</code></pre>
+
+<p>これでindex.htmlができるのでブラウザでアクセスする。</p>
+
+<p>編集は別ターミナルでindex.Rmdをエディタで編集し、
+Rを起動しているターミナルで</p>
+
+<pre><code>&gt; slidify(&quot;index.Rmd&quot;)
+</code></pre>
+
+<p>を実行する。<br>
+(もっとスマートなやり方がある気がする)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>単回帰分析
+アイスティーとその日の最高気温について</p>
+
+<p>サンプルデータ
+<a href="https://dl.dropboxusercontent.com/u/37468049/data01.txt">https://dl.dropboxusercontent.com/u/37468049/data01.txt</a></p>
+
+<p>これをRを起動しているディレクトリに保存</p>
+
+<p>データの読み込み</p>
+
+<pre><code>&gt; x &lt;- read.table(&quot;data01.txt&quot;, header=T)
+&gt; x
+   date temperture icetea
+1  8/22         29     77
+2  8/23         28     62
+3  8/24         34     93
+4  8/25         31     84
+5  8/26         25     59
+...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <p>図形描画</p>
+
+<pre><code>&gt; plot(iris[,1],iris[,3])
+&gt; plot(iris)
+&gt; pairs(iris[1:4], pch=21, bg=c(&quot;red&quot;, &quot;green3&quot;,&quot;blue&quot;))
+&gt; plot(iris$Petal.Length ~ iris$Sepal.Length)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="class" id="id" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    <pre><code class="r">hist(iris[, 3])
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+<!-- Grab CDN jQuery, fall back to local if offline -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+</html>

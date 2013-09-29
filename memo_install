@@ -1,0 +1,46 @@
+■R インストール
+Wikiを参照
+
+■パッケージのインストール
+sudo でRを起動
+% sudo r
+
+> options(repos="http://cran.r-project.org/")
+→ミラーサイトだと失敗することがあるのでとりあえず本家を設定
+
+> install.packages("devtools")
+> install_github('rCharts', 'ramnathv')
+
+■rChartsを使う
+※一旦Rを出て一般ユーザで実行
+> q()
+% r
+
+> library(rCharts)
+> names(iris) = gsub("\\.", "", names(iris))
+> rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
+> rPlot(mpg ~ wt | am+vs, data = mtcars, color = 'gear', type = 'point')
+
+■githubに図をup
+http://www.youtube.com/watch?v=nYr5KzaR1Vc
+
+-------------------------------
+■slidify
+
+> options(repos="http://cran.r-project.org/")
+> install.packages("devtools")
+> library(devtools)
+> install_github('slidify','ramnathv')
+> install_github('slidifyLibraries','ramnathv')
+> library(slidify)
+> library(slidifyLibraries)
+> author("takao.fukui")
+
+編集方法
+対象のディレクトリに移動して
+> slidify("index.Rmd")
+
+
+
+参考
+http://qh73xe.sakura.ne.jp/wordpress/?p=13
